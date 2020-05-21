@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.newsapp.adapters.AdapterUSNews
+import com.example.newsapp.adapters.AdapterNews
 import com.example.newsapp.helpers.ApiHelper
 import com.example.newsapp.dataModel.ArticleData
 import com.example.newsapp.R
@@ -22,7 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class USNews : Fragment() {
 
-        lateinit var adapter: AdapterUSNews
+        lateinit var adapter: AdapterNews
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,7 +50,7 @@ class USNews : Fragment() {
                 usNewsProgressBar.visibility = View.GONE
                 val responseReceived = response.body()
                 recyclerViewForUSNews.layoutManager = LinearLayoutManager(this@USNews.context)
-                adapter = AdapterUSNews(responseReceived!!)
+                adapter = AdapterNews(responseReceived!!)
                 recyclerViewForUSNews.adapter = adapter
             }
         })

@@ -16,7 +16,7 @@ import com.squareup.picasso.Picasso
 import java.io.Serializable
 
 
-class AdapterUSNews(var news: ArticleData) : RecyclerView.Adapter<AdapterUSNews.USNewsAdapter>() {
+class AdapterNews(var news: ArticleData) : RecyclerView.Adapter<AdapterNews.USNewsAdapter>() {
 
     var context: Context? = null
 
