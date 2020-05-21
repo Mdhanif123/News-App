@@ -1,0 +1,57 @@
+package com.example.newsapp.fragments
+
+import android.os.Bundle
+import android.util.Log
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.newsapp.adapters.AdapterUSNews
+import com.example.newsapp.helpers.ApiHelper
+import com.example.newsapp.dataModel.ArticleData
+import com.example.newsapp.R
+import com.example.newsapp.helpers.NewsApiInterface
+import kotlinx.android.synthetic.main.bbc_news.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+
+class BBCNews : Fragment() {
+
+    lateinit var adapter: AdapterUSNews
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.bbc_news, container, false)
+        getData()
+        return view
+    }
+
+    private fun getData() {
+        val retrofit = Retrofit.Builder().baseUrl(ApiHelper.baseUrl).addConverterFactory(
+            GsonConverterFactory.create()).build()
+        val service = retrofit.create(NewsApiInterface::class.java)
+        val call = service.getBBCNews(
+            ApiHelper.bbc,
+            ApiHelper.apiKey)
+        call.enqueue(object: Callback<ArticleData> {
+            override fun onFailure(call: Call<ArticleData>, t: Throwable) {
+                bbcNewsProgressBar.visibility = View.GONE
+                Log.d("Failure", t.toString())
+            }
+            override fun onResponse(call: Call<ArticleData>, response: Response<ArticleData>) {
+                bbcNewsProgressBar.visibility = View.GONE
+                val responseReceived = response.body()
+                recyclerViewForBBCNews.layoutManager = LinearLayoutManager(this@BBCNews.context)
+                adapter = AdapterUSNews(responseReceived!!)
+                recyclerViewForBBCNews.adapter = adapter
+            }
+        })
+    }
+
+}

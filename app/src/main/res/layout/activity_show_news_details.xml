@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.ShowNewsDetails">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/btnShare"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/newsImage"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="10dp"
+                android:src="@android:drawable/ic_popup_sync"
+                app:layout_constraintHeight_percent="0.25"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtTitle"
+                style="@style/TextView"
+                android:hint="Title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/newsImage" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtPublishDetails"
+                style="@style/TextView"
+                android:hint="Publish Date"
+                android:textColor="@color/lightGray"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtTitle" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtFixedDescription"
+                style="@style/TextView"
+                android:paddingTop="20dp"
+                android:text="Description :-"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtPublishDetails" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtReceivedDescription"
+                style="@style/TextView"
+                android:hint="Received Data"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtFixedDescription" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtFixedContent"
+                style="@style/TextView"
+                android:paddingTop="20dp"
+                android:text="Content :- "
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtReceivedDescription" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtReceivedContent"
+                style="@style/TextView"
+                android:hint="Received content "
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtFixedContent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtFixedURL"
+                style="@style/TextView"
+                android:paddingTop="20dp"
+                android:text="URL :- "
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtReceivedContent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtReceivedURL"
+                style="@style/TextView"
+                android:hint="Received url"
+                android:paddingTop="20dp"
+                android:textColor="@android:color/holo_blue_light"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/txtFixedURL"
+                app:layout_constraintTop_toBottomOf="@id/txtReceivedContent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:gravity="right"
+                android:id="@+id/txtAuthorName"
+                style="@style/TextView"
+                android:hint="@string/Author"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtReceivedURL" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:insetBottom="0dp"
+        android:id="@+id/btnShare"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Share"
+        android:textAllCaps="false"
+        app:icon="@drawable/share_icon"
+        app:iconGravity="textStart"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
