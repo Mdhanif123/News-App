@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".activities.SplashScreen">
 
-
       <ImageView
           android:id="@+id/splashIcon"
           android:layout_height="0dp"
@@ -19,6 +18,5 @@
           app:layout_constraintEnd_toEndOf="parent"
           android:src="@mipmap/ic_launcher_foreground"
           />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

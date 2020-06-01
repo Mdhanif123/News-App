@@ -12,6 +12,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -22,6 +23,9 @@ import com.example.newsapp.fragments.GermanyNews
 import com.example.newsapp.fragments.USNews
 import com.example.newsapp.Prefs
 import com.example.newsapp.R
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -32,6 +36,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        MobileAds.initialize(this,getString(R.string.appAdId))
+        val adRequest = AdRequest.Builder().build()
+        adViewTop.loadAd(adRequest)
+        adViewTop.visibility = View.GONE
+        adViewTop.adListener = object : AdListener() {
+            override fun onAdLoaded() {
+                adViewTop.visibility = View.VISIBLE
+                super.onAdLoaded()
+            }
+        }
         prefs = Prefs(this)
          bgColor = prefs!!.backgroundMode
         setUp()

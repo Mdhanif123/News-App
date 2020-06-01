@@ -5,13 +5,18 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.newsapp.dataModel.ArticleData
 import com.example.newsapp.helpers.ConstantStringHelper
 import com.example.newsapp.R
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_show_news_details.*
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
@@ -49,6 +54,18 @@ class ShowNewsDetails : AppCompatActivity() {
     }
 
     private fun setUp() {
+
+        MobileAds.initialize(this,getString(R.string.appAdId))
+        val adRequest = AdRequest.Builder().build()
+        adViewNewsDetails.loadAd(adRequest)
+        adViewNewsDetails.visibility = View.GONE
+        adViewNewsDetails.adListener = object : AdListener() {
+            override fun onAdLoaded() {
+                adViewNewsDetails.visibility = View.VISIBLE
+                super.onAdLoaded()
+            }
+        }
+
         if (!article.title.isNullOrEmpty()) txtTitle.text = article.title else txtTitle.text = " "
         if (!article.publishedAt.isNullOrEmpty()) txtPublishDetails.text =
             OffsetDateTime.parse(article.publishedAt).format(dateFormat).toString()
